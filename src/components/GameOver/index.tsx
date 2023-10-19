@@ -4,7 +4,7 @@ import WellDone from '../../assets/images/welldone.svg'
 import './GameOver.css'
 
 export function GameOver() {
-  const [quizState] = useQuizContext()
+  const [quizState, dispatch] = useQuizContext()
   return (
     <div id="gameover">
       <h2>Fim de Jogo!</h2>
@@ -15,7 +15,7 @@ export function GameOver() {
         perguntas.
       </p>
       <img src={WellDone} alt="Fim do Quiz" />
-      <button>Reiniciar</button>
+      <button onClick={() => dispatch({ type: 'NEW_GAME' })}>Reiniciar</button>
     </div>
   )
 }

@@ -62,6 +62,10 @@ function quizReducer(state: State, action: Action): State {
       }
     }
 
+    case 'NEW_GAME': {
+      return initialState
+    }
+
     default:
       return state
   }
