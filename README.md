@@ -1,27 +1,37 @@
-# React + TypeScript + Vite
+<h1 align="center">Quiz de Desenvolvimento Web</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Olá! Seja bem-vindo ao meu projeto de Quiz de Desenvolvimento Web! Este sistema foi desenvolvido para testar seus conhecimentos em HTML, CSS e JavaScript. Escolha sua categoria e responda às perguntas para ver o quão bem você conhece essas tecnologias.
 
-Currently, two official plugins are available:
+<!-- <img src="public/preview.png" alt="Imagem Preview do Quiz" style="border-radius: 4px"> -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologias
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-## Expanding the ESLint configuration
+- ReactJS
+- TypeScript
+- ViteJS
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Funcionalidades
+- Escolha entre as categorias: HTML, CSS e JavaScript.
+- Responda a uma série de perguntas para testar seus conhecimentos.
+- Receba feedback imediato sobre seus acertos e erros no final do quiz.
 
-- Configure the top-level `parserOptions` property like this:
+## Informações Úteis
+- Projeto no ar [aqui](https://gafanhotoalexandre.github.io/frontend-quiz/)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+## Executando o Projeto
+Certifique-se de que você tenha o Node.js instalado em seu sistema.
+
+### Pré-requisitos
+
+Certifique-se de que você tenha o Node.js instalado em seu sistema.
+
+### Instalação
+Clone o repositório e instale as dependências:
+
+```bash
+git clone https://github.com/gafanhotoalexandre/frontend-quiz.git
+cd frontend-quiz
+npm install
+npm run dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
