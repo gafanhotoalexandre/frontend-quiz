@@ -1,5 +1,7 @@
 <h1 align="center">Quiz de Desenvolvimento Web</h1>
 
+>Status: Em desenvolvimento...
+
 Olá! Seja bem-vindo ao meu projeto de Quiz de Desenvolvimento Web! Este sistema foi desenvolvido para testar seus conhecimentos em HTML, CSS e JavaScript. Escolha sua categoria e responda às perguntas para ver o quão bem você conhece essas tecnologias.
 
 <!-- <img src="public/preview.png" alt="Imagem Preview do Quiz" style="border-radius: 4px"> -->
