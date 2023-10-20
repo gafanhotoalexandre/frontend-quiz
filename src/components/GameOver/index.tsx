@@ -5,6 +5,11 @@ import './GameOver.css'
 
 export function GameOver() {
   const [quizState, dispatch] = useQuizContext()
+
+  function restartGame() {
+    dispatch({ type: 'REORDER_QUESTIONS' })
+    dispatch({ type: 'NEW_GAME' })
+  }
   return (
     <div id="gameover">
       <h2>Fim de Jogo!</h2>
@@ -15,7 +20,7 @@ export function GameOver() {
         perguntas.
       </p>
       <img src={WellDone} alt="Fim do Quiz" />
-      <button onClick={() => dispatch({ type: 'NEW_GAME' })}>Reiniciar</button>
+      <button onClick={restartGame}>Reiniciar</button>
     </div>
   )
 }

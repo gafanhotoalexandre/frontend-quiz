@@ -7,7 +7,7 @@ interface State {
   gameStage: string
   questions: MiniQuiz[]
   currentQuestion: number
-  // answerSelected: boolean
+  answerSelected: boolean
   score: number
   // help: boolean | string
   // optionToHide: string | null
@@ -30,6 +30,7 @@ const initialState: State = {
   questions,
   currentQuestion: 0,
   score: 0,
+  answerSelected: false,
 }
 
 function quizReducer(state: State, action: Action): State {
@@ -64,6 +65,10 @@ function quizReducer(state: State, action: Action): State {
 
     case 'NEW_GAME': {
       return initialState
+    }
+
+    case 'CHECK_ANSWER': {
+      return state
     }
 
     default:
