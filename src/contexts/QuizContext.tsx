@@ -60,6 +60,7 @@ function quizReducer(state: State, action: Action): State {
         ...state,
         currentQuestion: nextQuestion,
         gameStage: endGame ? STAGES[2] : state.gameStage,
+        answerSelected: false,
       }
     }
 
@@ -68,7 +69,19 @@ function quizReducer(state: State, action: Action): State {
     }
 
     case 'CHECK_ANSWER': {
-      return state
+      if (state.answerSelected) return state
+
+      const answer = action.payload.answer
+      const option = action.payload.option
+      let correctAnswer = 0
+
+      if (answer === option) correctAnswer = 1
+
+      return {
+        ...state,
+        score: state.score + correctAnswer,
+        answerSelected: option as unknown as boolean,
+      }
     }
 
     default:

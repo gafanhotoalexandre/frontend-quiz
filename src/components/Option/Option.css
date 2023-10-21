@@ -15,3 +15,13 @@
 #options-container .option p {
   margin-bottom: 0;
 }
+
+.correct {
+  background-color: var(--correct-answer-bg-color);
+  font-weight: bold;
+}
+
+.wrong {
+  background-color: var(--wrong-answer-bg-color);
+  opacity: .8;
+}

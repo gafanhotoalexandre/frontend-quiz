@@ -8,9 +8,14 @@ interface OptionProps {
   selectOption: () => void
 }
 export function Option({ option, answer, selectOption }: OptionProps) {
-  const [quizState, dispatch] = useQuizContext()
+  const [quizState] = useQuizContext()
   return (
-    <div className="option" onClick={selectOption}>
+    <div
+      className={`option ${
+        quizState.answerSelected && option === answer ? 'correct' : ''
+      } ${quizState.answerSelected && option !== answer ? 'wrong' : ''}`}
+      onClick={selectOption}
+    >
       <p>{option}</p>
     </div>
   )

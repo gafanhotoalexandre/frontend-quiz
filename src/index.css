@@ -5,6 +5,8 @@
 
   --question-bg-color: #8435de;
   --option-bg-color: #3c0e70;
+  --correct-answer-bg-color: #0bfc03;
+  --wrong-answer-bg-color: #6d0e70;
 }
 
 * {
