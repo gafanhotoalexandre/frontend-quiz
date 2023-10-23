@@ -30,6 +30,7 @@ export function Question() {
             option={option}
             answer={currentQuestion.answer}
             selectOption={() => onSelectOption(option)}
+            hide={quizState.optionToHide === option ? 'hide' : null}
           />
         ))}
       </section>
@@ -39,6 +40,9 @@ export function Question() {
           {currentQuestion.tip && (
             <button onClick={() => dispatch({ type: 'SHOW_TIP' })}>Dica</button>
           )}
+          <button onClick={() => dispatch({ type: 'REMOVE_OPTION' })}>
+            Excluir uma opção
+          </button>
         </>
       )}
 

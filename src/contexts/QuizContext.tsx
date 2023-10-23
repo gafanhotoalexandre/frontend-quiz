@@ -14,7 +14,7 @@ interface State {
   answerSelected: boolean
   score: number
   help: boolean | string
-  // optionToHide: string | null
+  optionToHide: string | null
 }
 
 type Action =
@@ -47,6 +47,7 @@ const initialState: State = {
   score: 0,
   answerSelected: false,
   help: false,
+  optionToHide: null,
 }
 
 function quizReducer(state: State, action: Action): State {
@@ -123,6 +124,27 @@ function quizReducer(state: State, action: Action): State {
       return {
         ...state,
         help: 'tip',
+      }
+    }
+
+    case 'REMOVE_OPTION': {
+      const questionWithoutOption: Question =
+        state.questions[state.currentQuestion]
+
+      let repeat = true
+      let optionToHide = ''
+
+      questionWithoutOption.options.forEach((option) => {
+        if (option !== questionWithoutOption.answer && repeat) {
+          optionToHide = option
+          repeat = false
+        }
+      })
+
+      return {
+        ...state,
+        optionToHide,
+        help: true,
       }
     }
 

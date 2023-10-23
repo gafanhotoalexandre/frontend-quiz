@@ -25,3 +25,7 @@
   background-color: var(--wrong-answer-bg-color);
   opacity: .8;
 }
+
+.hide {
+  display: none;
+}
