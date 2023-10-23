@@ -1,6 +1,6 @@
-import QuizImage from '../../assets/images/quiz.svg'
 import { useQuizContext } from '../../hooks/useQuizContext'
 
+import QuizImage from '../../assets/images/quiz.svg'
 import './Welcome.css'
 
 export function Welcome() {

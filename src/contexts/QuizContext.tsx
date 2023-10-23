@@ -1,15 +1,19 @@
 import { createContext, useReducer } from 'react'
 
-import { MiniQuiz } from '../types/Quiz'
-import questions from '../data/questions'
+import { Quiz } from '../types/Quiz'
+import { Question } from '../types/Question'
+import questions from '../data/questions_complete'
+
+type Stages = 'Start' | 'Category' | 'Playing' | 'End'
 
 interface State {
-  gameStage: string
-  questions: MiniQuiz[]
+  gameStage: Stages
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  questions: any
   currentQuestion: number
   answerSelected: boolean
   score: number
-  // help: boolean | string
+  help: boolean | string
   // optionToHide: string | null
 }
 
@@ -23,7 +27,18 @@ type Action =
   | { type: 'SHOW_TIP' }
   | { type: 'REMOVE_OPTION' }
 
-const STAGES = ['Start', 'Playing', 'End']
+enum GameStage {
+  Start = 'Start',
+  Category = 'Category',
+  Playing = 'Playing',
+  End = 'End',
+}
+const STAGES: GameStage[] = [
+  GameStage.Start,
+  GameStage.Category,
+  GameStage.Playing,
+  GameStage.End,
+]
 
 const initialState: State = {
   gameStage: STAGES[0],
@@ -31,6 +46,7 @@ const initialState: State = {
   currentQuestion: 0,
   score: 0,
   answerSelected: false,
+  help: false,
 }
 
 function quizReducer(state: State, action: Action): State {
@@ -41,8 +57,26 @@ function quizReducer(state: State, action: Action): State {
         gameStage: STAGES[1],
       }
 
+    case 'START_GAME': {
+      let quizQuestions: Question[] | null = null
+
+      state.questions.forEach((question: Quiz) => {
+        if (question.category === action.payload) {
+          quizQuestions = question.questions
+        }
+      })
+
+      const updatedState = { ...state }
+      updatedState.questions = quizQuestions! || state.questions
+
+      return {
+        ...updatedState,
+        gameStage: STAGES[2],
+      }
+    }
+
     case 'REORDER_QUESTIONS': {
-      const reorderedQuestions = questions.sort(() => Math.random() - 0.5)
+      const reorderedQuestions = state.questions.sort(() => Math.random() - 0.5)
       return {
         ...state,
         questions: reorderedQuestions,
@@ -53,14 +87,15 @@ function quizReducer(state: State, action: Action): State {
       const nextQuestion = state.currentQuestion + 1
       let endGame = false
 
-      if (!questions[nextQuestion]) {
+      if (!state.questions[nextQuestion]) {
         endGame = true
       }
       return {
         ...state,
         currentQuestion: nextQuestion,
-        gameStage: endGame ? STAGES[2] : state.gameStage,
+        gameStage: endGame ? STAGES[3] : state.gameStage,
         answerSelected: false,
+        help: false,
       }
     }
 
@@ -81,6 +116,13 @@ function quizReducer(state: State, action: Action): State {
         ...state,
         score: state.score + correctAnswer,
         answerSelected: option as unknown as boolean,
+      }
+    }
+
+    case 'SHOW_TIP': {
+      return {
+        ...state,
+        help: 'tip',
       }
     }
 

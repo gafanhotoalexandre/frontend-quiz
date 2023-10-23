@@ -7,7 +7,6 @@ export function GameOver() {
   const [quizState, dispatch] = useQuizContext()
 
   function restartGame() {
-    dispatch({ type: 'REORDER_QUESTIONS' })
     dispatch({ type: 'NEW_GAME' })
   }
   return (

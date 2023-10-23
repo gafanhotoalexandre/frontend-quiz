@@ -1,11 +1,13 @@
 import { useQuizContext } from '../../hooks/useQuizContext'
+import { Question as QuestionType } from '../../types/Question'
 import { Option } from '../Option'
 
 import './Question.css'
 
 export function Question() {
   const [quizState, dispatch] = useQuizContext()
-  const currentQuestion = quizState.questions[quizState.currentQuestion]
+  const currentQuestion: QuestionType =
+    quizState.questions[quizState.currentQuestion]
 
   function onSelectOption(option: string) {
     dispatch({
@@ -22,7 +24,7 @@ export function Question() {
       <h2>{currentQuestion.question}</h2>
 
       <section id="options-container">
-        {currentQuestion.options.map((option) => (
+        {currentQuestion.options.map((option: string) => (
           <Option
             key={option}
             option={option}
@@ -32,6 +34,17 @@ export function Question() {
         ))}
       </section>
 
+      {!quizState.answerSelected && !quizState.help && (
+        <>
+          {currentQuestion.tip && (
+            <button onClick={() => dispatch({ type: 'SHOW_TIP' })}>Dica</button>
+          )}
+        </>
+      )}
+
+      {!quizState.answerSelected && quizState.help === 'tip' && (
+        <p>{currentQuestion.tip}</p>
+      )}
       {quizState.answerSelected && (
         <button onClick={() => dispatch({ type: 'CHANGE_QUESTION' })}>
           Continuar
