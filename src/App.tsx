@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import { Welcome } from './components/Welcome'
 import { Question } from './components/Question'
 
@@ -9,7 +7,7 @@ import './App.css'
 import { GameOver } from './components/GameOver'
 import { PickCategory } from './components/PickCategory'
 function App() {
-  const [quizState, dispatch] = useQuizContext()
+  const [quizState] = useQuizContext()
 
   return (
     <div className="App">
